@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../schemas/user");
 const jwt = require("jsonwebtoken");
+const authMiddleware = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 //* 회원가입 API
@@ -51,5 +52,9 @@ router.post("/auth", async (req, res) => {
     token: jwt.sign({ userId: user.userId }, "customized-secret-key"),
   });
 });
+
+//* 인증 미들웨어
+
+router.get("/users/me", authMiddleware, (req, res) => {});
 
 module.exports = router;
