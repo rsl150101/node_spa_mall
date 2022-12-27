@@ -5,7 +5,7 @@ const express = require("express");
 
 //* MySQL 일 때
 const { Op } = require("sequelize");
-const { User } = require("./models");
+const { User } = require("../models");
 
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middlewares/authMiddleware");
