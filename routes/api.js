@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../schemas/user");
+const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middlewares/authMiddleware");
 const router = express.Router();
@@ -55,6 +55,8 @@ router.post("/auth", async (req, res) => {
 
 //* 인증 미들웨어
 
-router.get("/users/me", authMiddleware, (req, res) => {});
+router.get("/users/me", authMiddleware, (req, res) => {
+  return res.send({ user: res.locals.user });
+});
 
 module.exports = router;
